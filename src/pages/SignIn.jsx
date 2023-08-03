@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { ReactComponent as ArrpwRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
+import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 
 function SignIn() {
@@ -38,7 +39,7 @@ function SignIn() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Bad User Credentials")
     }
   };
 
@@ -84,7 +85,7 @@ function SignIn() {
             <div className="signUpBar">
               <p className="signUpText">Sign In</p>
               <button className="signInButton">
-                <ArrpwRightIcon fill="#ffffff" width="34px" height="34px" />
+                <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
               </button>
             </div>
           </form>
