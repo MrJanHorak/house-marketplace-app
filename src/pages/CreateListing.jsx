@@ -12,9 +12,10 @@ import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
-import { FirebaseError } from 'firebase/app'
+
 
 function CreateListing() {
+   // eslint-disable-next-line
   const [geolocationEnabled, setGeoLocationEnabled] = useState(true)
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -50,7 +51,6 @@ function CreateListing() {
   } = formData
 
   const auth = getAuth()
-
   const navigate = useNavigate()
   const isMounted = useRef(true)
 
@@ -70,6 +70,7 @@ function CreateListing() {
     return () => {
       isMounted.current = false
     }
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted])
 
   const onSubmit = async (e) => {
@@ -138,6 +139,8 @@ function CreateListing() {
               case 'running':
                 console.log('Upload is running')
                 break
+              default:
+                break
             }
           },
           (error) => {
@@ -161,6 +164,7 @@ function CreateListing() {
       toast.error('Images not uploaded')
       return
     })
+
 
     const formDataCopy = {
       ...formData,
@@ -277,7 +281,7 @@ function CreateListing() {
               className={parking ? 'formButtonActive' : 'formButton'}
               type="button"
               id="parking"
-              value={parking}
+              value={true}
               onClick={onMutate}
               min="1"
               max="50"
@@ -302,7 +306,7 @@ function CreateListing() {
               className={furnished ? 'formButtonActive' : 'formButton'}
               type="button"
               id="furnished"
-              value={furnished}
+              value={true}
               onClick={onMutate}
               min="1"
               max="50"
